@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script ></script>
+  </head>
+
+  <body>
+    <h1 id='output'>array sort </h1>
+    <script>
+   //take input
+  var arr = prompt("enter numbers : ");
+  
+    
+    function arr_sort(arr) {
+      arr = arr.split("");
+
+    let ordered_flag = false;
+    let temp = 0;
+    //convert string  to number array
+      //and taking care of negative numbers
+        for(let inx = 0; inx < arr.length; inx++) {
+            if(arr[inx] != '-') {
+                arr[inx] = Number(arr[inx]);
+            } else if(arr[inx+2] != ',') {
+              arr[inx] = 0 - Number(arr[inx+1]);
+              arr.splice(inx+1, 1);
+            }
+        }
+        
+        do {
+          ordered_flag = false;
+          for(let inx = 0; inx < arr.length-1; inx++) {
+            if( ((arr[inx]) ) > ((arr[inx+1])) )  {
+              temp = arr[inx];
+              arr[inx] = arr[inx+1];
+              arr[inx+1] = temp;
+              ordered_flag = true;
+            }
+          }
+        } while ( ordered_flag );
+        return arr;
+      } // end function
+      console.log(arr_sort(arr));
+      var textnode = document.createTextNode(arr_sort(arr));
+      let p = document.createElement("P") ;
+      p.appendChild(textnode);
+      
+      let output = document.getElementById('output');
+      output.appendChild(p);
+      
+    </script>
+  </body>
